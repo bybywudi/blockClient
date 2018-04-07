@@ -28,22 +28,14 @@ public class CalculateServlet extends javax.servlet.http.HttpServlet {
 
         HttpURLConnection connection = null;
         try{
-            URL u = new URL("http://39.106.194.129:8080/block/CalculateServlet"+"?result="+result+"&ip="+myIp+"&index="+index);
+            URL u = new URL("http://39.106.194.129:8080/blockS/CalculateServlet"+"?result="+result+"&ip="+myIp+"&index="+index);
             connection = (HttpURLConnection)u.openConnection();
             connection.setConnectTimeout(2000);
             //connection.setReadTimeout(2000);
 
             connection.setRequestMethod("GET");
-
-            int code = connection.getResponseCode();
-
-            if(code == 200){
-                return;
-            }else{
-                return;
-            }
-
-
+            System.out.println(connection.getResponseCode());
+            System.out.println(u.toString());
         }catch(MalformedURLException e){
             //e.printStackTrace();
         }catch(IOException e){
@@ -52,6 +44,7 @@ public class CalculateServlet extends javax.servlet.http.HttpServlet {
             if(connection != null){
                 connection.disconnect();
             }
+            return;
         }
     }
 
@@ -73,32 +66,38 @@ public class CalculateServlet extends javax.servlet.http.HttpServlet {
 
 
     public static String getRealIp() throws SocketException {
-        String localip = null;// 本地IP，如果没有配置外网IP则返回它
-        String netip = null;// 外网IP
+       return "39.106.194.129";
+       // return "47.95.194.16";
+    }
 
-        Enumeration<NetworkInterface> netInterfaces = NetworkInterface.getNetworkInterfaces();
-        InetAddress ip = null;
-        boolean finded = false;// 是否找到外网IP
-        while (netInterfaces.hasMoreElements() && !finded) {
-            NetworkInterface ni = netInterfaces.nextElement();
-            Enumeration<InetAddress> address = ni.getInetAddresses();
-            while (address.hasMoreElements()) {
-                ip = address.nextElement();
-                if (!ip.isSiteLocalAddress() && !ip.isLoopbackAddress() && ip.getHostAddress().indexOf(":") == -1) {// 外网IP
-                    netip = ip.getHostAddress();
-                    finded = true;
+    /**
+     * 获取服务器IP地址
+     * @return
+     */
+    @SuppressWarnings("unchecked")
+    public static String  getServerIp(){
+        String SERVER_IP = null;
+        try {
+            Enumeration netInterfaces = NetworkInterface.getNetworkInterfaces();
+            InetAddress ip = null;
+            while (netInterfaces.hasMoreElements()) {
+                NetworkInterface ni = (NetworkInterface) netInterfaces.nextElement();
+                ip = (InetAddress) ni.getInetAddresses().nextElement();
+                SERVER_IP = ip.getHostAddress();
+                if (!ip.isSiteLocalAddress() && !ip.isLoopbackAddress()
+                        && ip.getHostAddress().indexOf(":") == -1) {
+                    SERVER_IP = ip.getHostAddress();
                     break;
-                } else if (ip.isSiteLocalAddress() && !ip.isLoopbackAddress()
-                        && ip.getHostAddress().indexOf(":") == -1) {// 内网IP
-                    localip = ip.getHostAddress();
+                } else {
+                    ip = null;
                 }
             }
+        } catch (SocketException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
 
-        if (netip != null && !"".equals(netip)) {
-            return netip;
-        } else {
-            return localip;
-        }
+        return SERVER_IP;
     }
 }
+
