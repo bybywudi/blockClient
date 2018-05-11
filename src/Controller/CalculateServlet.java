@@ -1,6 +1,8 @@
 package Controller;
 
+import Dao.UserDaoImpl;
 import Utils.DownLoadUtils;
+import Utils.XmlUtils;
 
 import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
@@ -65,10 +67,11 @@ public class CalculateServlet extends javax.servlet.http.HttpServlet {
     }
 
 
-    public static String getRealIp() throws SocketException {
+    public static String getRealIp(){
+        return UserDaoImpl.getUserIp();
        //return "39.106.194.129";
        // return "47.95.194.16";
-        return "39.107.83.2";
+        //return "39.107.83.2";
     }
 
     /**

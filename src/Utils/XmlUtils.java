@@ -16,6 +16,7 @@ public class XmlUtils {
 	private static String usersfilepath;
 	private static String blocksfilepath;
 	private static String resfilepath;
+	private static String localfilepath;
 	static {
 		//usersfilepath = XmlUtils.class.getClassLoader().getResource("users.xml").getPath();
 		//判断操作系统
@@ -23,10 +24,12 @@ public class XmlUtils {
 			usersfilepath = "/home/upfiles/block/users.xml";
 			blocksfilepath = "/home/upfiles/block/blocks.xml";
 			resfilepath = "/home/upfiles/block/res.xml";
+			localfilepath = "/home/upfiles/block/local.xml";
 		}else{
 			usersfilepath = "D:\\users.xml";
 			blocksfilepath = "D:\\blocks.xml";
 			resfilepath = "D:\\res.xml";
+			localfilepath = "D:\\local.xml";
 		}
 
 		try {
@@ -60,6 +63,13 @@ public class XmlUtils {
 	public static Document getBlocksDocument() throws Exception {
 		SAXReader reader = new SAXReader();
 		Document document = reader.read(new File(blocksfilepath));
+		return document;
+
+	}
+
+	public static Document getLocalDocument() throws Exception {
+		SAXReader reader = new SAXReader();
+		Document document = reader.read(new File(localfilepath));
 		return document;
 
 	}
