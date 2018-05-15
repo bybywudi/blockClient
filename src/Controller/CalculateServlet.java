@@ -32,7 +32,7 @@ public class CalculateServlet extends javax.servlet.http.HttpServlet {
         String host = request.getParameter("host");
         HttpURLConnection connection = null;
         try{
-            URL u = new URL("http://39.106.194.129:8080/blockS/CalculateServlet"+"?result="+result+"&ip="+myIp+"&index="+index+"?qid="+qid+"?mid="+mid+"?host="+host);
+            URL u = new URL("http://39.106.194.129:8080/blockS/CalculateServlet"+"?result="+result+"&ip="+myIp+"&index="+index+"&qid="+qid+"&mid="+mid+"&host="+host);
             connection = (HttpURLConnection)u.openConnection();
             connection.setConnectTimeout(2000);
             //connection.setReadTimeout(2000);

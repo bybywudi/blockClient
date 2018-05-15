@@ -2,15 +2,18 @@
   <artifact type="exploded-war" name="blockClient:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/blockClient_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="blockClient/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="blockClient" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="module" name="JUnit4" module-name="blockClient" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../jars/dom4j-2.0.2.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../jars/commons-beanutils-1.9.3.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../jars/jaxen-1.1.jar" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="blockClient/web/Web" />
     </root>
   </artifact>
 </component>
