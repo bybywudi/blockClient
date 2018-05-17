@@ -27,12 +27,14 @@ public class CalculateServlet extends javax.servlet.http.HttpServlet {
         int res = doCalculate(problemIndex);
         String result = Integer.toString(res);
         String myIp = getRealIp();
+        String uid = UserDaoImpl.getUserId();
         String qid = request.getParameter("qid");
         String mid = request.getParameter("mid");
         String host = request.getParameter("host");
         HttpURLConnection connection = null;
         try{
-            URL u = new URL("http://39.106.194.129:8080/blockS/CalculateServlet"+"?result="+result+"&ip="+myIp+"&index="+index+"&qid="+qid+"&mid="+mid+"&host="+host);
+            URL u = new URL("http://"+host+":8080/blockS/CalculateServlet"+"?result="+result+"&ip="+myIp+"&index="+index+"&qid="+qid+"&mid="+mid+"&host="+host+"&uid="+uid);
+            //URL u = new URL("http://39.106.194.129:8080/blockS/CalculateServlet"+"?result="+result+"&ip="+myIp+"&index="+index+"&qid="+qid+"&mid="+mid+"&host="+host);
             connection = (HttpURLConnection)u.openConnection();
             connection.setConnectTimeout(2000);
             //connection.setReadTimeout(2000);

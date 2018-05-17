@@ -169,6 +169,20 @@ public class UserDaoImpl{
 		}
 	}
 
+	//查找配置文件中的用户ID
+	public static String getUserId() {
+		try {
+			Document document = XmlUtils.getLocalDocument();
+			Element e = (Element) document.selectSingleNode("//local[@attr='uid']");
+			if(e==null) {
+				return null;
+			}
+			return e.attributeValue("id");
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
+	}
+
 	//增加一个新的子问题结果区块
 	public void addNewResBolck(ProblemBlock block, int nowid){
 		try {
