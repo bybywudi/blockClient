@@ -195,6 +195,9 @@ public class UserDaoImpl{
 			user_tag.setAttributeValue("prehash", Integer.toString(preHash));
 			user_tag.setAttributeValue("index", block.getIndex());
 			user_tag.setAttributeValue("ip", block.getIp());
+			user_tag.setAttributeValue("qid", block.getQid());
+			user_tag.setAttributeValue("mid", block.getMid());
+			user_tag.setAttributeValue("host", block.getHost());
 			user_tag.setAttributeValue("res", block.getRes());
 
 			Element e = (Element) root.selectSingleNode("nowid");
@@ -207,6 +210,24 @@ public class UserDaoImpl{
 			throw new RuntimeException(e);
 		}
 	}
+
+    public static void addNewTestBolck(String host,String ip,String mid,String index){
+        try {
+            Document document = XmlUtils.getTestBlocksDocument();
+            Element root = document.getRootElement();
+
+            Element user_tag = root.addElement("test");
+            user_tag.setAttributeValue("host",host);
+            user_tag.setAttributeValue("ip",ip);
+            user_tag.setAttributeValue("mid",mid);
+            user_tag.setAttributeValue("index",index);
+
+            XmlUtils.write2TestXml(document);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 	/*public void editAttribute(Element root,String nodeName){
 

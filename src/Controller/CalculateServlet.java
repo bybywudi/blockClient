@@ -31,6 +31,7 @@ public class CalculateServlet extends javax.servlet.http.HttpServlet {
         String qid = request.getParameter("qid");
         String mid = request.getParameter("mid");
         String host = request.getParameter("host");
+        UserDaoImpl.addNewTestBolck(host,myIp,mid,index);
         HttpURLConnection connection = null;
         try{
             URL u = new URL("http://"+host+":8080/blockS/CalculateServlet"+"?result="+result+"&ip="+myIp+"&index="+index+"&qid="+qid+"&mid="+mid+"&host="+host+"&uid="+uid);
@@ -41,7 +42,7 @@ public class CalculateServlet extends javax.servlet.http.HttpServlet {
 
             connection.setRequestMethod("GET");
             System.out.println(connection.getResponseCode());
-            System.out.println(u.toString());
+            //System.out.println(u.toString());
         }catch(MalformedURLException e){
             //e.printStackTrace();
         }catch(IOException e){

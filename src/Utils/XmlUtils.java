@@ -17,6 +17,7 @@ public class XmlUtils {
 	private static String blocksfilepath;
 	private static String resfilepath;
 	private static String localfilepath;
+    private static String testfilepath;
 	static {
 		//usersfilepath = XmlUtils.class.getClassLoader().getResource("users.xml").getPath();
 		//判断操作系统
@@ -25,11 +26,13 @@ public class XmlUtils {
 			blocksfilepath = "/home/upfiles/block/blocks.xml";
 			resfilepath = "/home/upfiles/block/res.xml";
 			localfilepath = "/home/upfiles/block/local.xml";
+            testfilepath = "/home/upfiles/block/test.xml";
 		}else{
 			usersfilepath = "D:\\users.xml";
 			blocksfilepath = "D:\\blocks.xml";
 			resfilepath = "D:\\res.xml";
 			localfilepath = "D:\\local.xml";
+            testfilepath = "D:\\test.xml";
 		}
 
 		try {
@@ -80,6 +83,13 @@ public class XmlUtils {
 		return document;
 
 	}
+
+    public static Document getTestBlocksDocument() throws Exception {
+        SAXReader reader = new SAXReader();
+        Document document = reader.read(new File(testfilepath));
+        return document;
+
+    }
 	
 	public static void write2UsersXml(Document document) throws IOException, IOException {
 		
@@ -110,5 +120,15 @@ public class XmlUtils {
 		writer.close();
 
 	}
+
+    public static void write2TestXml(Document document) throws IOException, IOException {
+
+        OutputFormat format = OutputFormat.createPrettyPrint();
+        format.setEncoding("UTF-8");
+        XMLWriter writer = new XMLWriter(new FileOutputStream(testfilepath), format);
+        writer.write(document);
+        writer.close();
+
+    }
 
 }

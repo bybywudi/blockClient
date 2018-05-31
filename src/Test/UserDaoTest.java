@@ -45,4 +45,9 @@ public class UserDaoTest {
 		UserDaoImpl dao = new UserDaoImpl();
 		System.out.println(dao.getUserIp());
 	}
+
+    @Test
+    public void testAddNewTestBolck() {
+        UserDaoImpl.addNewTestBolck("33333","22222","1","12");
+    }
 }
