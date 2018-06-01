@@ -40,7 +40,7 @@ public class BlockUpdateServlet extends javax.servlet.http.HttpServlet {
         Element root = document.getRootElement();
         Element e = (Element) root.selectSingleNode("nowid");
         Attribute attr = e.attribute("id");
-        int nowId = Integer.parseInt(attr.getValue());
+        int nowId = Integer.parseInt(attr.getValue()) + 1;
 
         ProblemBlock pb = new ProblemBlock();
         pb.setHash(dao.blockHash(nowId));
