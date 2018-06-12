@@ -50,7 +50,7 @@ public class BlockUpdateServlet extends javax.servlet.http.HttpServlet {
         pb.setQid(qid);
         pb.setMid(mid);
         pb.setHost(host);
-
+        pb.setTime(System.currentTimeMillis());
         dao.addNewResBolck(pb,nowId);
         return;
 

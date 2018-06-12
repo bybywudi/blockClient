@@ -21,14 +21,14 @@ public class CalculateServlet extends javax.servlet.http.HttpServlet {
     }
 
     protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
-
+        String qid = request.getParameter("qid");
         String index = request.getParameter("index");
         int problemIndex = Integer.parseInt(index);
-        int res = doCalculate(problemIndex);
+        int res = doCalculate(problemIndex,qid);
         String result = Integer.toString(res);
         String myIp = getRealIp();
         String uid = UserDaoImpl.getUserId();
-        String qid = request.getParameter("qid");
+
         String mid = request.getParameter("mid");
         String host = request.getParameter("host");
         UserDaoImpl.addNewTestBolck(host,myIp,mid,index);
@@ -55,20 +55,32 @@ public class CalculateServlet extends javax.servlet.http.HttpServlet {
         }
     }
 
-    public static int doCalculate(int index){
-        int res = 0;
-        for(int i=10000 * (index-1) + 1;i<=10000 * index;i++){
-            for(int j=2;j<i;j++){
-                if(i%j == 0){
-                    break;
+    public static int doCalculate(int index,String qid){
+        if(qid.equals("1")){
+            int res = 0;
+            for(int i=10000 * (index-1) + 1;i<=10000 * index;i++){
+                for(int j=2;j<i;j++){
+                    if(i%j == 0){
+                        break;
+                    }
+                    if(j == i-1){
+                        res++;
+                    }
                 }
-                if(j == i-1){
+            }
+
+            return res;
+        }else{
+            int res = 0;
+            for(int i=10000 * (index-1) + 1;i<=10000 * index;i++){
+                if(i%2==0 && i%3==0 && i%5==0){
                     res++;
                 }
             }
+
+            return res;
         }
 
-        return res;
     }
 
 
