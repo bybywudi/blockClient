@@ -34,7 +34,7 @@ public class CalculateServlet extends javax.servlet.http.HttpServlet {
         UserDaoImpl.addNewTestBolck(host,myIp,mid,index);
         HttpURLConnection connection = null;
         try{
-            URL u = new URL("http://"+host+":8080/blockS/CalculateServlet"+"?result="+result+"&ip="+myIp+"&index="+index+"&qid="+qid+"&mid="+mid+"&host="+host+"&uid="+uid);
+            URL u = new URL("http://"+host+"/blockS/CalculateServlet"+"?result="+result+"&ip="+myIp+"&index="+index+"&qid="+qid+"&mid="+mid+"&host="+host+"&uid="+uid);
             //URL u = new URL("http://39.106.194.129:8080/blockS/CalculateServlet"+"?result="+result+"&ip="+myIp+"&index="+index+"&qid="+qid+"&mid="+mid+"&host="+host);
             connection = (HttpURLConnection)u.openConnection();
             connection.setConnectTimeout(2000);
