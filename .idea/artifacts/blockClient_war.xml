@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="blockClient:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/blockClient_war</output-path>
+    <root id="archive" name="blockClient_war.war">
+      <element id="artifact" artifact-name="blockClient:war exploded" />
+    </root>
+  </artifact>
+</component>
